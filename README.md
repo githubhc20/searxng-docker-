@@ -24,7 +24,13 @@ There are two ways to host SearXNG. The first one doesn't require any prior know
 4. Generate the secret key `sed -i "s|ultrasecretkey|$(openssl rand -hex 32)|g" searxng/settings.yml`  
    On a Mac: `sed -i '' "s|ultrasecretkey|$(openssl rand -hex 32)|g" searxng/settings.yml`
 5. Edit [searxng/settings.yml](https://github.com/searxng/searxng-docker/blob/master/searxng/settings.yml) according to your needs
-
+这项修改：limiter: false
+docker-compose.yml 修改：
+    ports:
+      - "8080:8080"
+ environment:
+      - SEARXNG_BASE_URL=http://192.168.0.112:8080/
+上述修改只适合本人，若不了解具体情况。请勿自行随意更改！！！
 > [!NOTE]
 > On the first run, you must remove `cap_drop: - ALL` from the `docker-compose.yaml` file for the `searxng` service to successfully create `/etc/searxng/uwsgi.ini`. This is necessary because the `cap_drop: - ALL` directive removes all capabilities, including those required for the creation of the `uwsgi.ini` file. After the first run, you should re-add `cap_drop: - ALL` to the `docker-compose.yaml` file for security reasons.
 
