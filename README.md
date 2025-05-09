@@ -24,10 +24,9 @@ There are two ways to host SearXNG. The first one doesn't require any prior know
 4. Generate the secret key `sed -i "s|ultrasecretkey|$(openssl rand -hex 32)|g" searxng/settings.yml`  
    On a Mac: `sed -i '' "s|ultrasecretkey|$(openssl rand -hex 32)|g" searxng/settings.yml`
 5. Edit [searxng/settings.yml](https://github.com/searxng/searxng-docker/blob/master/searxng/settings.yml) according to your needs
-这项修改：limiter: false
-docker-compose.yml 修改：
-    ports:
-      - "8080:8080"
+6. 这项修改：limiter: false
+ docker-compose.yml 修改：
+    ports:- "8080:8080"
  environment:
       - SEARXNG_BASE_URL=http://192.168.0.112:8080/
 上述修改只适合本人，若不了解具体情况。请勿自行随意更改！！！
